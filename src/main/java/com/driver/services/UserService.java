@@ -15,14 +15,26 @@ public class UserService {
 
     public User createUser(String username, String password){
 
+        User user = new User();
+        user.setFirstName("test");
+        user.setLastName("test");
+        user.setUsername(username);
+        user.setPassword(password);
+
+        User savedUser = userRepository3.save(user);
+
+        return savedUser;
 
     }
 
     public void deleteUser(int userId){
-
+        userRepository3.deleteById(userId);
     }
 
     public User updateUser(Integer id, String password){
+        User user = userRepository3.findById(id).get();
+        user.setPassword(password);
+        return userRepository3.save(user);
 
     }
 }
